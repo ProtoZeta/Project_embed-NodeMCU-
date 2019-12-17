@@ -62,9 +62,11 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) {
     // Processing Input//////////////////////////////////////////////////////
     Serial.println("stateStr ::==");
     Serial.println(stateStr);
-    s.print(stateStr);
+    
 
-    //if (stateStr ==
+    if (stateStr[0] == 'n') {
+      s.print(stateStr);
+    }
     ///////////////////////////////////////////////////////////////////////////
 }
 
@@ -145,7 +147,7 @@ void loop() {
 
             /* Chat with the microgear named ALIAS which is myself */
             /*/////////////////////////Here///////////////////////////////////////////////*/
-            microgear.chat("freeboard","20.19.18.17.16");
+            microgear.chat("freeboard","cmod.20.19.18.17.16");
             /////try publishing
 //            microgear.publish("/esp8266/temp1", 15);
 //            microgear.publish("/esp8266/temp2", 16);
