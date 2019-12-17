@@ -145,7 +145,12 @@ void loop() {
 
             /* Chat with the microgear named ALIAS which is myself */
             /*/////////////////////////Here///////////////////////////////////////////////*/
-            microgear.chat("haha","20");
+            microgear.chat("freeboard","20.19.18.17.16");
+            /////try publishing
+//            microgear.publish("/esp8266/temp1", 15);
+//            microgear.publish("/esp8266/temp2", 16);
+//            microgear.publish("/esp8266/fan", 17);
+//            microgear.publish("/esp8266/pump", 18);
             timer = 0;
         } 
         else timer += 100;
