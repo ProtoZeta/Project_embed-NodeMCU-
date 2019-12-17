@@ -40,6 +40,8 @@ AuthClient *authclient;
 int timer = 0;
 MicroGear microgear(client);
 
+String stm2netpie;
+
 
 /* If a new message arrives, do this */
 void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) {
@@ -106,7 +108,7 @@ void setup() {
     /* Call onConnected() when NETPIE connection is established */
     microgear.on(CONNECTED,onConnected);
 
-    Serial.begin(9600);
+    Serial.begin(74880);
     s.begin(115200);
     Serial.println("Starting...");
 
@@ -147,12 +149,15 @@ void loop() {
 
             /* Chat with the microgear named ALIAS which is myself */
             /*/////////////////////////Here///////////////////////////////////////////////*/
-            microgear.chat("freeboard","cmod.20.19.18.17.16");
+            while (a == ""){
+              a = s.readString();
+              microgear.chat(stm2netpie);
             /////try publishing
 //            microgear.publish("/esp8266/temp1", 15);
 //            microgear.publish("/esp8266/temp2", 16);
 //            microgear.publish("/esp8266/fan", 17);
 //            microgear.publish("/esp8266/pump", 18);
+            }
             timer = 0;
         } 
         else timer += 100;
