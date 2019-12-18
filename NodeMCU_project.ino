@@ -13,6 +13,7 @@
 SoftwareSerial s(3,1);
 #define RcvCount  10
 #define Tempo     1
+String a;
 
 String UARTrcvData;
 char UARTrcvBuffer;
@@ -59,15 +60,15 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) {
     // comment out old code : Serial.println((char *)msg);
     Serial.println();
 
-    String stateStr = String(strState).substring(0, msglen);
-
-    // Processing Input//////////////////////////////////////////////////////
-    Serial.println("stateStr ::==");
-    Serial.println(stateStr);
+//    String stateStr = String(strState).substring(0, msglen);
+//
+//    // Processing Input//////////////////////////////////////////////////////
+//    Serial.println("stateStr ::==");
+//    Serial.println(stateStr);
     
 
-    if (stateStr[0] == 'n') {
-      s.print(stateStr);
+    if (strState[0] == 'n') {
+      s.print(strState);
     }
     ///////////////////////////////////////////////////////////////////////////
 }
@@ -149,15 +150,12 @@ void loop() {
 
             /* Chat with the microgear named ALIAS which is myself */
             /*/////////////////////////Here///////////////////////////////////////////////*/
-            while (a == ""){
+
               a = s.readString();
-              microgear.chat(stm2netpie);
-            /////try publishing
-//            microgear.publish("/esp8266/temp1", 15);
-//            microgear.publish("/esp8266/temp2", 16);
-//            microgear.publish("/esp8266/fan", 17);
-//            microgear.publish("/esp8266/pump", 18);
-            }
+              Serial.println(a);
+              microgear.chat("freeboard",a);
+              a = "";
+
             timer = 0;
         } 
         else timer += 100;
